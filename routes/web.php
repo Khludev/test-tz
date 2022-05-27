@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ManagerController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\DashboardController;
 
@@ -19,9 +21,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('/', DashboardController::class)->name('index', 'admin');
-    Route::resource('role', RoleController::class)->name('index', 'roles');
+});
+
+Route::group(['prefix' => 'client', 'middleware' => ['auth']], function () {
+    Route::resource('/', ClientController::class)->name('index', 'client');
+});
+
+Route::group(['prefix' => 'manager', 'middleware' => ['auth']], function () {
+    Route::resource('/', ManagerController::class)->name('index', 'manager');
 });
