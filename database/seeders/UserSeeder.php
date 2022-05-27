@@ -16,11 +16,12 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $pass = bcrypt('admin123'); // Pass admin123
         $manager = User::create([
             'name' => 'Manager Petro',
             'email' => 'manager@gmail.com',
             'email_verified_at' => now(),
-            'password' => '$2y$10$m5aURgfPiYitezk72xktieUrSGRC27xvjFRudDkaT3CVe8fXUlRqi', // password
+            'password' => $pass,
             'remember_token' => Str::random(10),
         ]);
 
@@ -28,7 +29,7 @@ class UserSeeder extends Seeder
             'name' => 'Client Igor',
             'email' => 'client@gmail.com',
             'email_verified_at' => now(),
-            'password' => '$2y$10$m5aURgfPiYitezk72xktieUrSGRC27xvjFRudDkaT3CVe8fXUlRqi', // password
+            'password' => $pass,
             'remember_token' => Str::random(10),
         ]);
 

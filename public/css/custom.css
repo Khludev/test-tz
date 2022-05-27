@@ -1,0 +1,12 @@
+.flash-info.success {
+    position: absolute;
+    text-align: center;
+    top: 0;
+    z-index: 99999;
+    width: 100%;
+    background: #00807c;
+    padding: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
