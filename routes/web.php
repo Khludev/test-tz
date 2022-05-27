@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\DashboardController;
 
@@ -21,5 +22,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
-    Route::resource('/', DashboardController::class);
+    Route::resource('/', DashboardController::class)->name('index', 'admin');
+    Route::resource('role', RoleController::class)->name('index', 'roles');
 });
