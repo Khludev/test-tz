@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 Route::group(['prefix' => 'manager', 'middleware' => ['auth']], function () {
     Route::get('/', [ManagerController::class, 'index'])->name('manager');
+    Route::patch('/reply/{application}', [ManagerController::class, 'reply'])->name('manager.reply');
 });
 
 Route::group(['prefix' => 'client', 'middleware' => ['auth']], function () {

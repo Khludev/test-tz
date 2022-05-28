@@ -9,11 +9,20 @@ class ManagerController extends Controller
 {
     public function index()
     {
-        $apps = Application::selectRaw('applications.*, u.name, u.email')
+        $items = 5;
+        $apps = Application::selectRaw('applications.*, u.name, u.email, u.id as u_id, u.email')
             ->orderBy('created_at', 'DESC')
             ->join('users as u', 'u.id', 'applications.user_id')
-            ->paginate(5);
+            ->paginate($items);
 
         return view('manager.index', compact('apps'));
+    }
+
+    public function reply(Application $application)
+    {
+        $application->viewed = !$application->viewed;
+        $application->save();
+
+        return back();
     }
 }

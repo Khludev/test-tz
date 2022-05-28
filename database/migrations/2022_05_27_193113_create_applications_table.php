@@ -19,6 +19,7 @@ class CreateApplicationsTable extends Migration
             $table->string('title')->comment('Тема заявки');
             $table->string('attached_file')->nullable()->comment('Прикріплений файл');
             $table->text('message')->nullable()->comment('Повідомлення');
+            $table->boolean('viewed')->default(false)->index()->comment('Переглянуто');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
