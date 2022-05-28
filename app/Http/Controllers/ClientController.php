@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:clientPanel', ['only' => ['index', 'resetDate']]);
+        $this->middleware('permission:clintCreate', ['only' => ['create']]);
+    }
+
     public function index()
     {
         $create_app_access = Application::todayEntry()->first();

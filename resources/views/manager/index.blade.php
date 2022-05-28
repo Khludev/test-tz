@@ -22,7 +22,11 @@
                 <td>{{$app->message}}</td>
                 <td>{{$app->name}}</td>
                 <td>{{$app->email}}</td>
-                <td><a target="_blank" href="{{url('storage/' . $app->attached_file)}}">Open file</a></td>
+                <td>
+                    @if($app->attached_file)
+                        <a target="_blank" href="{{url('storage/' . $app->attached_file)}}">Open file</a>
+                    @endif
+                </td>
                 <td>{{$app->viewed ? 'true' : 'false'}}</td>
                 <td>{{$app->created_at}}</td>
                 <td>

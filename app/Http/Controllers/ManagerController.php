@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class ManagerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:managerPanel', ['only' => ['index']]);
+        $this->middleware('permission:managerReply', ['only' => ['reply']]);
+    }
+
     public function index()
     {
         $items = 5;
