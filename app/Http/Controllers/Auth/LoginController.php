@@ -42,10 +42,6 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if ($user->hasAllRoles(CustomRoles::ROLE_MANAGER))
-            $this->redirectTo = route('manager');
-
-        else if ($user->hasAllRoles(CustomRoles::ROLE_CLIENT))
-            $this->redirectTo = route('client');
+        $this->redirectTo = $this->getRedirectTo($user);
     }
 }
