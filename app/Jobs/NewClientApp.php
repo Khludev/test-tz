@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Classes\CustomRoles;
 use App\Mail\NotifyManagerOfNewApp;
 use App\Models\Application;
 use App\Models\User;
@@ -38,6 +39,8 @@ class NewClientApp implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->user->email)->send(new NotifyManagerOfNewApp($this->app, $this->user));
+        $first_manager = User::role(CustomRoles::ROLE_MANAGER)->first();
+        if ($first_manager)
+            Mail::to($first_manager->email)->send(new NotifyManagerOfNewApp($this->app, $this->user));
     }
 }
